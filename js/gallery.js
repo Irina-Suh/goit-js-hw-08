@@ -79,13 +79,8 @@ function createGalleryItem(images) {
   img.src = images.preview;
   img.dataset.source = images.original;
   img.alt = images.description;
-  li.appendChild(img);
-  li.appendChild(link);
-
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    console.log(images.original);
-  });
+   li.appendChild(link);
+  link.appendChild(img);
 
   return li;
 }
@@ -96,8 +91,10 @@ images.forEach(image => {
 });
 
 gallery.addEventListener('click', e => {
+    e.preventDefault();
   if (e.target.tagName === 'IMG') {
     const bigImg = e.target.dataset.source;
+    
     console.log(bigImg);
      showModal(bigImg);
   }
